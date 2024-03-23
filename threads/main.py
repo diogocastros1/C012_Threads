@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import *
 from sensor import criaSensorTemp, temperature
 import threading
 
