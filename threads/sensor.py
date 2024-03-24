@@ -1,7 +1,7 @@
+from threading import current_thread
 import time
 import random
-import writeAJson
-from threading import current_thread
+from writeAJson import writeAJson
 
 
 def criaSensorTemp(name, value, database):
@@ -22,20 +22,16 @@ def temperature(name, interval, database):
             print('Atencao! Temperatura  muito  alta! Verificar Sensor', name, '!')
             database.update_one({'nomeSensor':name},{'$set':{'valorSensor':temp, 'sensorAlarmado':True}})
 
-            #sensor = database.collection.find(local)
             sensor = database.find(local)
-            #writeAJson(sensor, f"Sensor{current_thread().getName()}")
-            writeAJson(sensor, "sensor")
+            writeAJson(sensor, f"Sensor{current_thread().getName()}")
             break
         else:
             time.sleep(interval)
             database.update_one({'nomeSensor':name},{'$set':{'valorSensor':temp, 'sensorAlarmado':False}})
             print(name, '=', temp, 'C\n')
-            
-            #sensor = database.collection.find(local)
+
             sensor = database.find(local)
-            #writeAJson(sensor, f"Sensor{current_thread().getName()}")
-            writeAJson(sensor, "sensor")
+            writeAJson(sensor, f"Sensor{current_thread().getName()}")
         
             
 # faltando criar as consultas para validar se a temperatura subiu
