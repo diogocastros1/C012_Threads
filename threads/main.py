@@ -15,9 +15,9 @@ sensores = db.sensores
 # criaSensorTemp('TempX', sensores)
 
 
-x = threading.Thread(target=temperature, args=('Temp1', 5, sensores))
-y = threading.Thread(target=temperature, args=('Temp2', 5, sensores))
-z = threading.Thread(target=temperature, args=('Temp3', 5, sensores))
+x = threading.Thread(target=temperature, args=('Temp1', 5, sensores, 5))
+y = threading.Thread(target=temperature, args=('Temp2', 5, sensores, 5))
+z = threading.Thread(target=temperature, args=('Temp3', 5, sensores, 5))
 x.start()
 y.start()
 z.start()

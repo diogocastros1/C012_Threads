@@ -4,8 +4,8 @@
             "$oid": "642cba60b8c64543ba115e5b"
         },
         "nomeSensor": "Temp1",
-        "valorSensor": 31,
+        "valorSensor": 39,
         "unidadeMedida": "C\u00b0",
-        "sensorAlarmado": false
+        "sensorAlarmado": true
     }
 ]

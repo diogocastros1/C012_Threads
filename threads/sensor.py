@@ -13,10 +13,12 @@ def criaSensorTemp(name, value, database):
         }
     database.insert_one(sensor_doc)
 
-def temperature(name, interval, database):
+def temperature(name, interval, database, limite):
+    count = 0
     temp = 30
     local = {"nomeSensor": name}
-    while True:
+    while count < limite:
+        count += 1
         temp = random.randint(30, 40)
         if(temp >= 38):
             print('Atencao! Temperatura  muito  alta! Verificar Sensor', name, '!')
@@ -24,7 +26,6 @@ def temperature(name, interval, database):
 
             sensor = database.find(local)
             writeAJson(sensor, f"Sensor{current_thread().getName()}")
-            break
         else:
             time.sleep(interval)
             database.update_one({'nomeSensor':name},{'$set':{'valorSensor':temp, 'sensorAlarmado':False}})
@@ -32,8 +33,5 @@ def temperature(name, interval, database):
 
             sensor = database.find(local)
             writeAJson(sensor, f"Sensor{current_thread().getName()}")
-        
-            
-# faltando criar as consultas para validar se a temperatura subiu
 
-    
+    print(f'{name}: Atingiu o limite de execuções.')
